@@ -1,7 +1,3 @@
-# update
-
-sudo dnf update -y
-
 # Configurar git
 read -p "Introduce tu nombre para Git: " git_name
 read -p "Introduce tu email para Git: " git_email
@@ -9,11 +5,14 @@ read -p "Introduce tu email para Git: " git_email
 git config --global user.name "$git_name"
 git config --global user.email "$git_email"
 
+# update
+sudo dnf update -y
+
 # utilidades
-dnf install pipx unzip xclip yq jq fzf -y
+sudo dnf install pipx unzip xclip yq jq fzf -y
 
 # peticiones http
-dnf install curl wget httpie -y
+sudo dnf install curl wget httpie -y
 
 # vscode
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc &&
@@ -32,7 +31,25 @@ sudo dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/
 sudo dnf install gh --repo gh-cli -y
 
 # entorno javascript
-
 sudo dnf install npm nodejs -y
-
 curl -fsSL https://bun.sh/install | bash
+
+# docker
+
+sudo dnf remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+
+sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo systemctl enable --now docker
+
+# lazydocker
+curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
