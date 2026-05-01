@@ -29,10 +29,10 @@ fc-cache -f -v
 # gh cli
 sudo dnf install dnf5-plugins
 sudo dnf config-manager addrepo --from-repofile=https://cli.github.com/packages/rpm/gh-cli.repo
-sudo dnf install gh --repo gh-cli
+sudo dnf install gh --repo gh-cli -y
 
 # entorno javascript
 
-sudo dnf install npm nodejs
+sudo dnf install npm nodejs -y
 
 curl -fsSL https://bun.sh/install | bash
