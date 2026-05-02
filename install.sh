@@ -10,7 +10,9 @@ sudo dnf update -y
 
 # utilidades
 sudo dnf install pipx unzip xclip yq jq fzf -y
-echo 'eval "$(fzf --bash)"' >>~/.bashrc
+
+# zoxide
+curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
 
 # peticiones http
 sudo dnf install curl wget httpie -y
@@ -81,3 +83,19 @@ sudo mv "$TMP_DIR/tetro-tui" /usr/local/bin/tetro-tui
 rm -rf "$TMP_DIR"
 
 pipx install csvkit
+
+# modificar bashrc
+# función helper
+add_to_bashrc() {
+  local line="$1"
+  grep -qxF "$line" ~/.bashrc || echo "$line" >>~/.bashrc
+}
+
+# inicializaciones
+add_to_bashrc 'eval "$(fzf --bash)"'
+add_to_bashrc 'eval "$(zoxide init bash)"'
+
+# aliases
+add_to_bashrc 'alias cd="z || builtin cd"'
+add_to_bashrc 'alias n="nvim"'
+add_to_bashrc 'alias c="code"'
