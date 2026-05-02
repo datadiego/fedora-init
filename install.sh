@@ -10,7 +10,7 @@ sudo dnf update -y
 
 # utilidades
 sudo dnf install pipx unzip xclip yq jq fzf -y
-
+# TODO: añadir eval a bashrc para fzf
 # peticiones http
 sudo dnf install curl wget httpie -y
 
@@ -47,9 +47,10 @@ sudo dnf remove docker \
                   docker-engine-selinux \
                   docker-engine
 
-sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo
-sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+sudo dnf config-manager addrepo --from-repofile https://download.docker.com/linux/fedora/docker-ce.repo -y
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
 
 # lazydocker
 curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
