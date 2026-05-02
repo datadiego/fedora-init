@@ -96,6 +96,6 @@ add_to_bashrc 'eval "$(fzf --bash)"'
 add_to_bashrc 'eval "$(zoxide init bash)"'
 
 # aliases
-add_to_bashrc 'alias cd="z || builtin cd"'
+add_to_bashrc 'alias cd="z"'
 add_to_bashrc 'alias n="nvim"'
 add_to_bashrc 'alias c="code"'
