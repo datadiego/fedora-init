@@ -79,3 +79,5 @@ chmod +x "$TMP_DIR/tetro-tui"
 sudo mv "$TMP_DIR/tetro-tui" /usr/local/bin/tetro-tui
 
 rm -rf "$TMP_DIR"
+
+pipx install csvkit
