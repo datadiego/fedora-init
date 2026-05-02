@@ -10,7 +10,8 @@ sudo dnf update -y
 
 # utilidades
 sudo dnf install pipx unzip xclip yq jq fzf -y
-# TODO: añadir eval a bashrc para fzf
+echo 'eval "$(fzf --bash)"' >>~/.bashrc
+
 # peticiones http
 sudo dnf install curl wget httpie -y
 
@@ -59,6 +60,22 @@ curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/i
 
 #neovim
 sudo dnf install nvim -y
+
 #lazyvim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
+
+wget https://github.com/Strophox/tetro-tui/releases/download/v3.1.0/tetro-tui_v3.1_x86_64-unknown-linux-gnu.zip
+
+#tetro-tui
+URL="https://github.com/Strophox/tetro-tui/releases/download/v3.1.0/tetro-tui_v3.1_x86_64-unknown-linux-gnu.zip"
+TMP_DIR="$(mktemp -d)"
+
+wget -q "$URL" -O "$TMP_DIR/tetro.zip"
+
+unzip -q "$TMP_DIR/tetro.zip" -d "$TMP_DIR"
+
+chmod +x "$TMP_DIR/tetro-tui"
+sudo mv "$TMP_DIR/tetro-tui" /usr/local/bin/tetro-tui
+
+rm -rf "$TMP_DIR"
